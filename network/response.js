@@ -11,3 +11,6 @@ function error(req, res, msg, status) {
     body: ""
   });
 }
+
+
+module.exports = {success, error};
