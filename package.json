@@ -1,0 +1,20 @@
+{
+  "name": "chat-online-api",
+  "version": "0.1.0",
+  "description": "Chat online",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "chat.",
+    "server",
+    "telegram"
+  ],
+  "author": "José Arévalo",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
+}
