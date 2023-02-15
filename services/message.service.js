@@ -13,7 +13,7 @@ class MessageService {
   async findOne(id) {
     const resp = await Model.findByid(id);
     if(!resp) {
-      throw boom.notFound('Product not found - id: ' + id)
+      throw boom.notFound('Message not found - id: ' + id)
     }
     return resp
   }

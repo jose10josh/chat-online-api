@@ -8,6 +8,7 @@ const config = {
   dbUser : process.env.DB_USER,
   dbPassword : process.env.DB_PASSWORD,
   dbName : process.env.DB_NAME,
+  dbCluster : process.env.DB_CLUSTER,
 }
 
 module.exports = {config};

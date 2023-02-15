@@ -6,12 +6,12 @@ const {connectDB} = require('./db/db');
 
 const USER = encodeURIComponent(config.dbUser);
 const PASSWORD = encodeURIComponent(config.dbPassword);
-const DB = config.dbName;
-const URI = `mongodb+srv://${USER}:${PASSWORD}@${DB}.lztcgdo.mongodb.net/?retryWrites=true&w=majority`;
-connectDB(URI);
+const CLUSTER = config.dbCluster;
+const URI = `mongodb+srv://${USER}:${PASSWORD}@${CLUSTER}.lztcgdo.mongodb.net/?retryWrites=true&w=majority`;
+connectDB(URI, config.dbName);
 
 const app = express();
-const port = 3000;
+const port = config.port;
 
 app.use(express.json());
 

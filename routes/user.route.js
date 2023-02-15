@@ -1,16 +1,16 @@
 const express = require('express');
 
 const responses = require('../utils/response');
-const messageService = require('../services/message.service');
+const UserService = require('../services/user.service');
 
 const router = express.Router();
-const service = new messageService();
+const service = new UserService();
 
 
 router.get('/', async (req, res, next) => {
   try {
-    const messages = await service.find();
-    responses.success(req, res, messages, 200);
+    const users = await service.find();
+    responses.success(req, res, users, 200);
   } catch (error) {
     next(error);
   }
@@ -19,7 +19,6 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     let body = req.body;
-    body.date = Date();
 
     const response = await service.create(body);
     responses.success(req, res, response, 201);

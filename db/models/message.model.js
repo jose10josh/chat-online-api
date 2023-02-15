@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 
-const messageSchema = new mongoose.Schema({
-  user: {
-    type: String,
-    require: true
+const Schema = mongoose.Schema;
+
+const messageSchema = new Schema({
+  user:{
+    type: Schema.ObjectId,
+    ref: 'User'
   },
   message: {
     type: String,
