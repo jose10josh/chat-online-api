@@ -1,16 +1,7 @@
-const mongoose = require('mongoose');
+
 const boom = require('@hapi/boom');
 
 const Model = require('../db/models/message.model');
-
-
-
-const URI = 'mongodb+srv://db_chat_online:tXvZj3D1yC3ggnSX@cluster0.lztcgdo.mongodb.net/?retryWrites=true&w=majority';
-mongoose.set("strictQuery", false);
-mongoose.connect(URI).then(
-  () => { console.log("[db] Conectada correctamente")},
-  err => { console.log('[error][db] Ocurrio un error: ' + err) }
-);
 
 
 class MessageService {
