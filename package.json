@@ -14,7 +14,9 @@
   "author": "José Arévalo",
   "license": "MIT",
   "dependencies": {
+    "@hapi/boom": "^10.0.1",
     "express": "^4.18.2",
+    "mongoose": "^6.9.1",
     "nodemon": "^2.0.20"
   }
 }
