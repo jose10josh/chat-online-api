@@ -5,8 +5,12 @@ const Model = require('../db/models/message.model');
 
 
 class MessageService {
-  async find() {
-    const resp = await Model.find();
+  async find(user) {
+    let filters = {};
+    if(user !== null) {
+      filters = {user: user}
+    }
+    const resp = await Model.find(filters).populate('user');
     return resp
   }
 

@@ -9,7 +9,8 @@ const service = new messageService();
 
 router.get('/', async (req, res, next) => {
   try {
-    const messages = await service.find();
+    const { user } = req.query;
+    const messages = await service.find(user||null)
     responses.success(req, res, messages, 200);
   } catch (error) {
     next(error);
