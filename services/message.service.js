@@ -5,10 +5,10 @@ const Model = require('../db/models/message.model');
 
 
 class MessageService {
-  async find(user) {
+  async find(chatId) {
     let filters = {};
-    if(user !== null) {
-      filters = {user: user}
+    if(chatId !== null) {
+      filters = {chat: chatId}
     }
     const resp = await Model.find(filters).populate('user');
     return resp
@@ -23,6 +23,7 @@ class MessageService {
   }
 
   async create(message) {
+    message.date = new Date();
     const newMessage = new Model(message);
     await newMessage.save();
     return newMessage;

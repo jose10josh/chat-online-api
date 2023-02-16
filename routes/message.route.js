@@ -9,8 +9,8 @@ const service = new messageService();
 
 router.get('/', async (req, res, next) => {
   try {
-    const { user } = req.query;
-    const messages = await service.find(user||null)
+    const { chatId } = req.query;
+    const messages = await service.find(chatId||null)
     responses.success(req, res, messages, 200);
   } catch (error) {
     next(error);
@@ -19,9 +19,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    let body = req.body;
-    body.date = Date();
-
+    const body = req.body;
     const response = await service.create(body);
     responses.success(req, res, response, 201);
   } catch (error) {
