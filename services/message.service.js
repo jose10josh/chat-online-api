@@ -1,6 +1,7 @@
 
 const boom = require('@hapi/boom');
 
+const {socket} = require('../socket');
 const Model = require('../db/models/message.model');
 
 
@@ -32,6 +33,8 @@ class MessageService {
     message.file = fileUrl;
     const newMessage = new Model(message);
     await newMessage.save();
+
+    socket.io.emit('message', message);
     return newMessage;
   }
 
