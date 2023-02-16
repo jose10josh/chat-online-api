@@ -18,6 +18,8 @@ app.use(express.json());
 
 routerApi(app);
 
+app.use('/app', express.static('public'));
+
 app.listen(port, () => {
   console.log(`Server corriendo en: http://localhost:${port}` );
 });

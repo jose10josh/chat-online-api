@@ -1,10 +1,25 @@
 const express = require('express');
+const multer = require('multer');
+const path = require('path');
 
 const responses = require('../utils/response');
 const messageService = require('../services/message.service');
 
 const router = express.Router();
 const service = new messageService();
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/files/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname))
+  }
+})
+const uploads = multer({
+  storage: storage
+});
+
 
 
 router.get('/', async (req, res, next) => {
@@ -17,10 +32,12 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/',
+  uploads.single('file'),
+  async (req, res, next) => {
   try {
     const body = req.body;
-    const response = await service.create(body);
+    const response = await service.create(body, req.file);
     responses.success(req, res, response, 201);
   } catch (error) {
     next(error);

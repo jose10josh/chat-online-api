@@ -22,8 +22,14 @@ class MessageService {
     return resp
   }
 
-  async create(message) {
+  async create(message, file) {
     message.date = new Date();
+    let fileUrl = "";
+    if(file) {
+      fileUrl = `http://localhost:3000/app/files/${file.filename}`
+    }
+
+    message.file = fileUrl;
     const newMessage = new Model(message);
     await newMessage.save();
     return newMessage;
